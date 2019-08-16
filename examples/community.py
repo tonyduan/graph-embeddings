@@ -33,8 +33,7 @@ if __name__ == "__main__":
     A = gen_graphs(4, 16)
     E_LU = [compute_unnormalized_laplacian_eigenmaps(a) for a in A]
     E_LN = [compute_normalized_laplacian_eigenmaps(a) for a in A]
-    E_SP = [compute_locally_linear_embedding(a) for a in A]
-    #E_SP = [compute_structure_preserving_embedding(a) for a in A]
+    E_LLE = [compute_locally_linear_embedding(a) for a in A]
 
     plt.figure(figsize = (8, 6))
     for i in range(4):
@@ -47,7 +46,7 @@ if __name__ == "__main__":
         plt.imshow(E_LN[i], vmin = -1, vmax = 1)
         plt.axis("off")
         plt.subplot(4, 4, 4 * i + 4)
-        plt.imshow(E_SP[i], vmin = np.min(E_SP), vmax = np.max(E_SP))
+        plt.imshow(E_LLE[i], vmin = np.min(E_LLE), vmax = np.max(E_LLE))
         plt.axis("off")
 
     plt.subplot(4, 4, 1)
@@ -60,5 +59,5 @@ if __name__ == "__main__":
     plt.title("LLE")
     plt.tight_layout()
     plt.show()
-    
+
 

@@ -12,6 +12,12 @@ $$
 f(A) = f(P A P^\top), \text{ for all permutation matrices} P
 $$
 
+Each method returns embeddings $X$ such that, for each node $i$, $x^{(i)} \in \mathbb{R}^d$ satifies
+$$||x^{(i)}||_2 = 1.$$
+
+Moreover, for each feature $x_d \in \mathbb{R}^n$ in the dataset, we have
+$$||x_d||_2 = 1.$$
+
 So far we implement:
 
 - Laplacian eigenmaps [1]. Both normalized and un-normalized versions.
