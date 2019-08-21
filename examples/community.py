@@ -31,33 +31,39 @@ def gen_graphs(n_graphs, n_nodes, p_intra=0.7, p_inter=0.01):
 if __name__ == "__main__":
 
     A = gen_graphs(4, 16)
+    E_N2V = [compute_node2vec_embedding(a, 2, 10) for a in A]
     E_LU = [compute_unnormalized_laplacian_eigenmaps(a) for a in A]
     E_LN = [compute_normalized_laplacian_eigenmaps(a) for a in A]
     E_LLE = [compute_locally_linear_embedding(a) for a in A]
 
     plt.figure(figsize = (8, 6))
     for i in range(4):
-        plt.subplot(4, 4, 4 * i + 1)
+        plt.subplot(4, 5, 5 * i + 1)
         nx.draw(nx.from_numpy_array(A[i]), node_size = 20, node_color = "0")
-        plt.subplot(4, 4, 4 * i + 2)
+        plt.subplot(4, 5, 5 * i + 2)
         plt.imshow(E_LU[i], vmin = -1, vmax = 1)
         plt.axis("off")
-        plt.subplot(4, 4, 4 * i + 3)
+        plt.subplot(4, 5, 5 * i + 3)
         plt.imshow(E_LN[i], vmin = -1, vmax = 1)
         plt.axis("off")
-        plt.subplot(4, 4, 4 * i + 4)
+        plt.subplot(4, 5, 5 * i + 4)
         plt.imshow(E_LLE[i], vmin = np.min(E_LLE), vmax = np.max(E_LLE))
         plt.axis("off")
+        plt.subplot(4, 5, 5 * i + 5)
+        plt.imshow(E_N2V[i], vmin = np.min(E_N2V), vmax = np.max(E_N2V))
+        plt.axis("off")
 
-    plt.subplot(4, 4, 1)
+    plt.subplot(4, 5, 1)
     plt.title("Graph")
-    plt.subplot(4, 4, 2)
+    plt.subplot(4, 5, 2)
     plt.title("LE (unnormalized)")
-    plt.subplot(4, 4, 3)
+    plt.subplot(4, 5, 3)
     plt.title("LE (normalized)")
-    plt.subplot(4, 4, 4)
+    plt.subplot(4, 5, 4)
     plt.title("LLE")
+    plt.subplot(4, 5, 5)
+    plt.title("Node2Vec")
     plt.tight_layout()
     plt.show()
-
+    plt.savefig("./examples/ex.png")
 
