@@ -64,6 +64,5 @@ if __name__ == "__main__":
     plt.subplot(4, 5, 5)
     plt.title("Node2Vec")
     plt.tight_layout()
-    plt.savefig("./examples/ex.png")
     plt.show()
 
