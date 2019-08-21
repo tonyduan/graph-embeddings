@@ -32,7 +32,7 @@ Below we show an example of the embeddings for a community dataset on 18 nodes. 
 
 ![](examples/ex.png)
 
-Note that in order to use Node2Vec you must install Stanford's SNAP software.
+Note that in order to use Node2Vec you must compile Stanford's SNAP software and place the `node2vec` utility into the `lib/` folder.
 
 #### References
 
