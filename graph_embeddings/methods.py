@@ -22,8 +22,7 @@ def compute_unnormalized_laplacian_eigenmaps(A, eps=1e-2):
     D = np.diag(np.sum(A, axis=1))
     L = D - A
     W, E = np.linalg.eigh(L)
-    if np.mean(E[:,0]) < 0: # due to numerical imprecision
-        E[:,0] = -E[:,0]
+    E = E @ np.diag(np.sign(W))
     return np.real(E)
 
 def compute_normalized_laplacian_eigenmaps(A, eps=1e-2):
@@ -46,8 +45,7 @@ def compute_normalized_laplacian_eigenmaps(A, eps=1e-2):
     L = np.diag(D) - A
     L = np.diag(D ** -0.5) @ L @ np.diag(D ** -0.5)
     W, E = np.linalg.eigh(L)
-    if np.mean(E[:,0]) < 0: # due to numerical imprecision
-        E[:,0] = -E[:,0]
+    E = E @ np.diag(np.sign(W))
     return np.real(E)
 
 def compute_locally_linear_embedding(A):
@@ -66,7 +64,8 @@ def compute_locally_linear_embedding(A):
     -------
     E: (n_nodes x n_nodes) LLE embeddings
     """
-    _, S, V = np.linalg.svd(np.eye(len(A)) - A)
+    U, S, V = np.linalg.svd(np.eye(len(A)) - A)
+    V = np.diag(np.sign(np.sum(U, axis = 0))) @ V
     return V.T
    
 def compute_structure_preserving_embedding(A, C = 100.0, verbose = False):
