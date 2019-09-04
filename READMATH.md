@@ -26,13 +26,9 @@ So far we implement:
 
 - Structure-preserving embeddings [3]. Warning: implementation does not scale at all.
 
-- Node2Vec [4]. Simple wrapper around Stanford's SNAP software.
-
 Below we show an example of the embeddings for a community dataset on 18 nodes. Notice how prevalent the community structure is within the first two features of each embedding.
 
 ![](examples/ex.png)
-
-Note that in order to use Node2Vec you must compile Stanford's SNAP software and place the `node2vec` utility into the `lib/` folder.
 
 #### References
 
@@ -41,8 +37,6 @@ Note that in order to use Node2Vec you must compile Stanford's SNAP software and
 [2] Roweis, S.T., and Saul, L.K. (2000). Nonlinear Dimensionality Reduction by Locally Linear Embedding. Science 290, 2323–2326.
 
 [3] Shaw, B., and Jebara, T. (2009). Structure Preserving Embedding. In Proceedings of the 26th Annual International Conference on Machine Learning, (New York, NY, USA: ACM), pp. 937–944.
-
-[4] Grover, A., and Leskovec, J. (2016). Node2Vec: Scalable Feature Learning for Networks. In Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, (New York, NY, USA: ACM), pp. 855–864.
 
 #### License
 
